@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>React</title>
+</head>
+
+<body>
+   <div id="root"></div>
+</body>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+   function MinutesToHours () {
+      const [amount, setAmount] = React.useState();
+      const [inverted, setInverted] = React.useState(false);
+      const onChange = (event) => {
+         setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const onFlip = () => {
+         reset();
+         setInverted((current) => !current);
+      }
+      return (
+         <div>
+            <h3>Minutes & Hours</h3>
+            <div>
+               <label htmlFor="minutes">분</label>
+               <input 
+                  value={inverted ? amount * 60 : amount}
+                  id="minutes"
+                  placeholder="분"
+                  type="number"
+                  onChange={onChange}
+                  disabled={inverted === true}
+               />
+            </div>  
+            <div>
+               <label htmlFor="hours">시간</label>
+               <input
+                  value={inverted ? amount : Math.round(amount / 60)}
+                  id="hours"
+                  placeholder="시간"
+                  type="number"
+                  onChange={onChange}
+                  disabled={inverted === false} 
+               />
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
+         </div>
+      );
+   }
+
+   function KmToMiles (){
+      const [amount,setAmount] = React.useState();
+      const [inverted, setInverted] = React.useState(false);
+      const onChange = (event) => {
+         setAmount(event.target.value);
+      }
+      const reset = () => setAmount();
+      const onFlip = () => {
+         reset();
+         setInverted((current) => !current);
+      }
+      return (
+         <div>
+            <h3>KM 2 M</h3>
+            <div>
+               <label htmlFor="km">Km</label>
+               <input
+                  value={inverted ? Math.round(amount / "0.621371") : amount}
+                  id="km"
+                  placeholder="km"
+                  type="number"
+                  onChange={onChange}
+                  disabled={inverted === true}
+               />
+            </div>
+            <div>
+               <label htmlFor="miles">Miles</label>
+               <input
+                  value={inverted ? amount : amount * "0.621371"} 
+                  id="miles" 
+                  placeholder="miles" 
+                  type="number" 
+                  onChange={onChange}
+                  disabled={inverted === false}
+               />
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
+         </div>
+      );
+   }
+
+   function App () {
+      const [index, setIndex] = React.useState("-1");
+      const onSelect = (event) => {
+         setIndex(event.target.value);
+      }
+      return (
+         <div>
+            <h1>Super Converter</h1>
+            <hr />
+            <select value={index} onChange={onSelect}>
+               <option value="-1">선택해주세요.</option>
+               <option value="0">Minutes & Hours</option>
+               <option value="1">Km & Miles</option>
+            </select>
+            {index === "0" ? <MinutesToHours /> : null}
+            {index === "1" ? <KmToMiles /> : null}
+         </div>
+      );
+   }
+
+   const root = document.querySelector('#root');
+   ReactDOM.render(<App />, root);
+
+</script>
+
+</html>

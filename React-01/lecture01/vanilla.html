@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>바닐라 JS</title>
+</head>
+<body>
+   <span id="total">총 클릭 : 0</span>
+   <button id="btn">클릭</button>
+</body>
+<script>
+   const $button = document.querySelector('#btn');
+   const $span = document.querySelector('#total');
+   let counter = 0;
+   function btnHandler (){
+      counter = counter + 1;
+      $span.textContent = `총 클릭 : ${counter}`;
+   }
+   $button.addEventListener('click', btnHandler);
+</script>
+</html>
