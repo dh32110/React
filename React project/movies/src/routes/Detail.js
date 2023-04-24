@@ -33,6 +33,7 @@ function Detail() {
           />
         </div>
       )}
+      <Link to={"/"}>Go to Home</Link>
     </div>
   );
 }
