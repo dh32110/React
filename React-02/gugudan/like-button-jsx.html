@@ -1,0 +1,75 @@
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <title>좋아요</title>
+</head>
+
+<body>
+   <div id="root"></div>
+   <!-- 개발용 -->
+   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+   <!-- babel -->
+   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+   <!-- 배포용 -->
+   <!--<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>-->
+   <!--<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>-->
+   <script type="text/babel">
+      'use strict';
+
+      const e = React.createElement;
+
+      // component = 데이터와 화면을 하나로 묶어둔 덩어리라고 보면 편하다.
+      // 내가 만든 component는 무조건 대문자여야한다. 기존의 태그들은 소문자여야 한다.
+      // <input type="text" />에서 /를 무조건 붙여줘야한다.
+      // 문자열은 ""로 감싸줘야하고(태그 사이의 문자열 제외) JS코드 부분은 {}로 감싸줘야한다.
+      // 객체는 obj = {a: 'b', c: 'd'}가 아니라 obj = {{a: 'b', c: 'd'}} 한번 더 감싸줘야한다.
+      class LikeButton extends React.Component {
+         constructor(props) {
+            super(props);
+            // state가 데이터이다. 화면의 바뀔 부분들을 state로 바꿔주면 된다.
+            this.state = {
+               liked: false
+            };
+         }
+
+         render() {
+            if (this.state.liked) {
+               return 'You liked this.';
+            }
+            // render의 return부분이 화면이라고 보면 된다.
+            // JSX
+            // 아래의 코드는 script태그 안에서 돌어가지 않는다. 이러한 코드를 돌아가게 해주기 위해 babel이라는 라이브러리가 있다.
+            // button태그 안에서는 if문 대신 {this.state.liked ? 'liked' : 'liked!'}처럼 삼항연산자를 사용하고 for문 대신 {[1, 2, 3].map(i) => {
+            //  return <div>i</div>;
+            // }}처럼 배열을 이용한다.
+            // return에는 태그가 하나만 오고 그 안에 다른 태그들이 들어가야지 형제태그가 올 수 없다. <></> fragment라는 가짜 태그를 사용할 수도 있다.
+            // ()로 묶어줄 수도 있다.
+            return (
+               <button onClick={() => this.setState({liked: true})}>
+                  Like
+               </button>
+            )
+         }
+      }
+   </script>
+   <script type="text/babel">
+      // React를 화면에 그려주는 부분.
+      // id root안에 LikeButton을 그려준다는 코드
+      // JSX
+      // ReactDOM.render(<LikeButton />, document.querySelector('#root')); 17버전 코드
+      // 내가 만든 component도 태그라고 볼 수 있다. 그래서 다음과 같이 사용할 수 도 있다.
+      // ReactDOM.createRoot(document.querySelector('#root')).render(
+      //       <div>   
+      //          <LikeButton />
+      //          <LikeButton />
+      //          <LikeButton />
+      //          <LikeButton />
+      //       </div>
+      //    );
+      ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />); // 18버전 코드
+   </script>
+</body>
+
+</html>
