@@ -44,23 +44,33 @@
                      value: '',
                   };
                });
+               // 이렇게 하면 DOM이 선택되어 focus된다. (DOM에 접근)
+               this.input.focus();
             } else {
                this.setState({
                   result: '땡',
                   value: '',
                });
+               this.input.focus();
             }
          };
 
          onChange = (e) => {this.setState({value: e.target.value})};
 
+         input;
+
+         onRefInput = (c) => {this.input = c;};
+         // state가 바뀌면 render함수만 다시 실행된다.
+         // React에서는 class 대신에 className을 사용한다. label의 for속성은 htmlFor을 대신 사용한다.
          render(){
             return (
                // <></>가 에러가 나면 <React.fragment></React.fragment>로 바꿔준다. babel 때문에 오류나는 경우가 있음.
+               // ref={}의 ref는 reference로 input에 focus를 주기위해 사용 함수는 아무 함수나 넣어주어도 된다고 함.
+               // ref={(c) => {this.input = c;}}의 input을 위 클래스에서 input;으로 선언합니다.
                <React.Fragment>
                   <div>{this.state.first} 곱하기 {this.state.second}는?</div>
                   <form onSubmit={this.onSubmit}>
-                     <input type="number" value={this.state.value} onChange={this.onChange} />
+                     <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange} />
                      <button>입력</button>
                   </form>
                   <div>{this.state.result}</div>
