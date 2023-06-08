@@ -1,4 +1,5 @@
 const path = require('path'); // 경로조작(node)
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
    name: 'wordRelay-setting', // 웹팩 설정의 이름
@@ -20,15 +21,37 @@ module: {
       test: /\.jsx?/, // 정규 표현식으로 js파일과 jsx파일에 이 룰을 적용하겠다는 뜻
       loader: 'babel-loader', //'babel-loader' 이 룰을 적용하겠다.
       options: {
-         presets: ['@babel/preset-env', '@babel/preset-react'],
-         plugins: ['@babel/plugin-proposal-class-properties'],
+         // plugin들의 모음이 presets이다.
+         presets: [
+            ['@babel/preset-env', {
+                  targets: {
+                     browsers: ['> 1% in KR'],
+                  },
+                  debug: true,
+               }], 
+            '@babel/preset-react'
+         ], // 기본적으로는 presets만 설정하고 에러가 난다면 에러에서 말하는 plugins를 설치해주면 된다.
+         plugins: [
+            '@babel/plugin-proposal-class-properties',
+            'react-refresh/babel' // 핫 리로딩 기능 추가
+         ],
       }, // babel의 옵션들을 이곳에 넣어줌
    }], // 규칙을 적용할 파일들
 }, //연결
-
+   plugins: [
+      new RefreshWebpackPlugin() // plugin 장착
+   ],
    output: {
+      // path는 실제의 경로, publicPath는 가상의 경로
       path: path.join(__dirname, 'dist'), // path.join 경로를 알아서 합쳐준다., __dirname - 현재 폴더 경로
       // (__dirname, 'dist')의미는 현재 폴더 경로 안에 있는 dist폴더이다.
-      filename: 'app.js'
+      filename: 'app.js',
+      publicPath: '/dist/'
    }, //출력
+   devServer: {
+      // webpack이 생성해주는 경로
+      devMiddleware: {publicPath: '/dist/'}, // publicPath 옵션이 devMiddleware객체로 들어갔다.
+      static: {directory: path.resolve(__dirname)}, // 실제로 존재하는 정적파일들(index.html)의 경로
+      hot: true,
+   },
 };
