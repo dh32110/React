@@ -38,7 +38,7 @@
                   placeholder="분"
                   type="number"
                   onChange={onChange}
-                  disabled={inverted === true}
+                  disabled={inverted}
                />
             </div>  
             <div>
@@ -49,7 +49,7 @@
                   placeholder="시간"
                   type="number"
                   onChange={onChange}
-                  disabled={inverted === false} 
+                  disabled={!inverted} 
                />
             </div>
             <button onClick={reset}>Reset</button>
