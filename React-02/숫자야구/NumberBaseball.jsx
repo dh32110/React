@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState, useRef } from 'react';
 import Try from '/Try';
 
 function getNumbers(){ // 숫자 네개를 겹치지 않고 랜덤하게 뽑는 함수, this를 사용하지 않는 경우 함수를 class 밖에서 선언할 수 있다., Hooks로 바꿀 때에도 영향을 받지 않아 독립적으로 존재 가능
@@ -18,6 +18,7 @@ const NumberBaseball = () => {
    // useState는 값을 넣으면 data에 값이 설정되지만 함수를 넣으면 함수의 return 값이 data로 들어가고 그 다음부터는 실행되지 않는다.
    //getNumbers() 이렇게 써도 문제되지는 않는다 초기값이기 때문에 useState가 알아서 첫번째 값만 넣어준다. 다만, 쓸데없이 리렌더링 되는게 문제다. 비효율적임 lazy init이라고 한다.
    const [tries, setTries] = React.useState([]);
+   const inputEl = useRef(null);
 
    const onSubmit = (e) => { // 화살표 함수를 사용하지 않으면 this를 사용할 때 에러가 생긴다. 화살표함수를 쓰지 않으려면 constructor를 사용해야한다.
       e.preventDefault();
@@ -30,6 +31,7 @@ const NumberBaseball = () => {
          setValue('');
          setAnswer(getNumbers());
          setTries([]);
+         inputEl.current.focus();
       } else { // 답이 틀렸을 때
          const answerArray = value.split('').map((v) => parseInt(v));
          let strike = 0;
@@ -49,9 +51,11 @@ const NumberBaseball = () => {
                }
             }
             setTries((prevTries) => { // 몇 볼 몇 스트라이크인지 알려주고 기회 더 준다.
-               return [...prevTries, {try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.`}]
+               return [...prevTries, {try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.`}] // input 창에 입력할 때 이 부분이 리렌더링 되는 이유는
+               // 부모컴포넌트 numberBaseball이 리렌더링 될 때 자식 컴포넌트도 리렌더링 되기 때문이다.
             });
             setValue('');
+            inputEl.current.focus();
          }
       }
    }
@@ -66,7 +70,7 @@ const NumberBaseball = () => {
       <>
          <h1>{result}</h1>
          <form onSubmit={onSubmit}>
-            <input maxLength={4} value={value} onChange={onChange} />
+            <input ref={inputEl} maxLength={4} value={value} onChange={onChange} />
             <button>입력</button>
          </form>
          <div>시도: {tries.length}</div>

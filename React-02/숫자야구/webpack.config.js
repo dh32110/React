@@ -1,5 +1,6 @@
- const path = require('path');
- const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const path = require('path');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+//  process.env.NODE_ENV = 'production'; 실서비스로 배포할 때에는 추가해주어야 한다.
 
 module.exports = {
    name: 'numBaseball-setting',
