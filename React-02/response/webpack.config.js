@@ -10,7 +10,7 @@ module.exports = {
    },
    //중요
    entry: {
-      app: ['./client.jsx'],
+      app: ['./client'],
    }, //입력
    module: {
       rules: [{
