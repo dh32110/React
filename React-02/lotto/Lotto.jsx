@@ -20,6 +20,9 @@ function getWinNumbers(){
 // 해당 배열이 바뀌면 새로 시작된다.
 // 자식 컴포넌트에 props로 함수를 넘겨줄 때에는 useCallback을 꼭 해주어야한다.
 // useCallback이 없으면 매번 새로운 함수가 생성되는데 자식 컴포넌트는 그걸 받아 매번 새로운 렌더링을 한다.(memo의 경우만 해당)
+// Hooks는 조건문안에 절대 넣으면 안되고 함수나 반복문 안에도 웬만하면 넣지 않는게 좋다.
+// useEffect안에도 useState 사용하면 안된다. 그 외에도 마찬가지다.
+// Hooks들은 최상위로 빼고 실행 순서를 중시한다.
 const Lotto = () => {// Hooks는 선언해주는 순서가 중요하다.
    const lottoNumbers = useMemo(() => getWinNumbers(),[]); // 배열에 들어간 요소가 바뀌지 않는한 다시 실행되지 않는다.
    const [winNumbers, setWinNumbers] = useState(lottoNumbers);
