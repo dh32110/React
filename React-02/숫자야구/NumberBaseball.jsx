@@ -1,5 +1,5 @@
 import React,{ useState, useRef } from 'react';
-import Try from '/Try';
+import Try from './Try';
 
 function getNumbers(){ // 숫자 네개를 겹치지 않고 랜덤하게 뽑는 함수, this를 사용하지 않는 경우 함수를 class 밖에서 선언할 수 있다., Hooks로 바꿀 때에도 영향을 받지 않아 독립적으로 존재 가능
    const candidate = [1,2,3,4,5,6,7,8,9];
