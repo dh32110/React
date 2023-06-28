@@ -44,8 +44,7 @@ module.exports = {
          publicPath: '/dist/'
       },
       static: {
-         historyApiFallback: true,
-         directory: path.resolve(__dirname)
+         directory: path.resolve(__dirname),
       },
    },
 } // module.export
