@@ -7,11 +7,11 @@ const Games = () => {
       <BrowserRouter>
          <div>
             {/* 공통인 부분 */}
-            <Link to='/game/NumberBaseball'>숫자야구</Link>
+            <Link to='/game/number-baseball'>숫자야구</Link>
             &nbsp;
-            <Link to='/game/Lotto'>Lotto</Link>
+            <Link to='/game/lotto'>Lotto</Link>
             &nbsp;
-            <Link to='/game/Rsp'>Rsp</Link>
+            <Link to='/game/rsp'>Rsp</Link>
             &nbsp;
             <Link to='/game/index'>게임 매쳐</Link>
          </div>
@@ -19,7 +19,7 @@ const Games = () => {
          <div>
             <Routes>
                <Route path='/' element={<GameMatcher />} />
-               <Route path='/game/:name' element={<GameMatcher />} />
+               <Route path='/game/*' element={<GameMatcher />} />
                {/* name 앞에 콜론 붙은 것들을 parameter라고 부르며 줄여서 params라고 한다. 이 부분은 동적으로 바뀐다. */}
             </Routes>
          </div>

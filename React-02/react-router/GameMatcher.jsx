@@ -1,7 +1,7 @@
 import React from 'react';
-import NumberBaseball from '../숫자야구/NumberBaseball';
-import Lotto from '../lotto/Lotto';
-import Rsp from '../rsp/Rsp';
+import NumberBaseball from '../숫자야구/NumberBaseball'
+import Lotto from '../lotto/Lotto-class';
+import Rsp from '../rsp/RspClass';
 import {useLocation, useNavigate, Routes, Route} from 'react-router';
 
 const GameMatcher = () => {
@@ -12,9 +12,9 @@ const GameMatcher = () => {
    console.log(urlSearchParams.get('page'));
    return (
       <Routes>
-         <Route path='NumberBaseball' element={<NumberBaseball />} />
-         <Route path='Lotto' element={<Lotto />} />
-         <Route path='Rsp' element={<Rsp />} />
+         <Route path='number-baseball' element={<NumberBaseball />} />
+         <Route path='lotto' element={<Lotto />} />
+         <Route path='rsp' element={<Rsp />} />
          <Route path='*' element={<div>일치하는 게임이 없습니다.</div>} />
       </Routes>
    );

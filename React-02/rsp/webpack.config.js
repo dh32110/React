@@ -44,7 +44,6 @@ module.exports = {
    devServer: {
       devMiddleware: {publicPath: '/dist/'},
       static: {
-         historyApiFallback: true,
          directory: path.resolve(__dirname)
       },
       hot: true,

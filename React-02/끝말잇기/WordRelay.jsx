@@ -3,9 +3,9 @@ const React = require('react'); //npm에서 react를 불러온다.
 const { useState, useRef } = React;
 
 const WordRelay = () => {
-   const [word,setWord] = React.useState('자동차');
-   const [value,setValue] = React.useState('');
-   const [result,setResult] = React.useState('');
+   const [word,setWord] = useState('자동차');
+   const [value,setValue] = useState('');
+   const [result,setResult] = useState('');
    const inputRef = useRef(null);
 
    const onSubmit = (e) => {

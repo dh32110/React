@@ -12,9 +12,9 @@ function getNumbers(){ // 숫자 네개를 겹치지 않고 랜덤하게 뽑는 
 }
 
 const NumberBaseball = () => {
-   const [result, setResult] = React.useState('');
-   const [value, setValue] = React.useState('');
-   const [answer, setAnswer] = React.useState(getNumbers); //getNumbers()이렇게 넣으면 안된다. 함수컴포넌트 특성 상 전체가 리렌더링 되는데 getNumbers()는 처음 한번만 적용되기 때문에 쓸데없이 매번 실행된다.
+   const [result, setResult] = useState('');
+   const [value, setValue] = useState('');
+   const [answer, setAnswer] = useState(getNumbers); //getNumbers()이렇게 넣으면 안된다. 함수컴포넌트 특성 상 전체가 리렌더링 되는데 getNumbers()는 처음 한번만 적용되기 때문에 쓸데없이 매번 실행된다.
    // useState는 값을 넣으면 data에 값이 설정되지만 함수를 넣으면 함수의 return 값이 data로 들어가고 그 다음부터는 실행되지 않는다.
    //getNumbers() 이렇게 써도 문제되지는 않는다 초기값이기 때문에 useState가 알아서 첫번째 값만 넣어준다. 다만, 쓸데없이 리렌더링 되는게 문제다. 비효율적임 lazy init이라고 한다.
    const [tries, setTries] = React.useState([]);

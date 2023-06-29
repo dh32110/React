@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import useInterval from './useInterval';
 
 const rspCoords = {//Coords는 좌표를 말함
