@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, memo, useMemo } from 'react';
+import React, { useCallback, useContext, memo } from 'react';
 import { CLICK_MINE, CODE, FLAG_CELL, NORMALIZE_CELL, OPEN_CELL, QUESTION_CELL, TableContext } from './MineSweeper';
 
 const getTdStyle = (code) => {

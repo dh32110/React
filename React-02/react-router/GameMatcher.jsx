@@ -1,5 +1,5 @@
 import React from 'react';
-import NumberBaseball from '../숫자야구/NumberBaseball'
+import NumberBaseball from '../숫자야구/NumberBaseball';
 import Lotto from '../lotto/Lotto-class';
 import Rsp from '../rsp/RspClass';
 import {useLocation, useNavigate, Routes, Route} from 'react-router';

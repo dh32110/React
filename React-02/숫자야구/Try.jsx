@@ -20,6 +20,6 @@ const Try = memo(({ tryInfo }) => { // Component를 사용하는 이유는 재�
          </li>
       );
 });
-Try.displayName = 'Try'; // memo를 씌우면 개발자 도구에서 컴포넌트 이름이 바뀌기 때문에 다시 원래대로 돌려주는 기능을 한다.
+//Try.displayName = 'Try'; // memo를 씌우면 개발자 도구에서 컴포넌트 이름이 바뀌기 때문에 다시 원래대로 돌려주는 기능을 한다.
 
 export default Try;
