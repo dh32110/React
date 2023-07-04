@@ -73,7 +73,7 @@ const NumberBaseball = () => {
 
    const onChange = useCallback((e) => setValue(e.target.value), []);
 
-   return(
+   return (
       <>
          <h1>{result}</h1>
          <form onSubmit={onSubmit}>
